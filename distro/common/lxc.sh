@@ -177,7 +177,8 @@ fi
 
 rand=$(date +%s)
 container=mylxc$rand
-lxc-create -n $container -t ubuntu-cloud -- -r vivid -T http://htsat.vicp.cc:808/docker-image/ubuntu-15.04-server-cloudimg-arm64-root.tar.gz
+#lxc-create -n $container -t ubuntu-cloud -- -r vivid -T http://htsat.vicp.cc:808/docker-image/ubuntu-15.04-server-cloudimg-arm64-root.tar.gz
+lxc-create -n $container -t ubuntu-cloud -- -r vivid -T http://htsat.vicp.cc:804/ubuntu-15.04-server-cloudimg-arm64-root.tar.gz
 print_info $? lxc-create
 
 # -- lxc-ls -------------------------------------------------------------------
