@@ -19,7 +19,7 @@ params:
 
 install:
     deps:
-        - lxc
+        #- lxc
         - lxc-templates
         - wget
         - lxc-extra

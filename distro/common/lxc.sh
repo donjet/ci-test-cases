@@ -160,7 +160,11 @@ else
 fi
 
 # -- lxc-create ---------------------------------------------------------------
-LXC_TEMPLATE=/usr/share/lxc/templates/lxc-ubuntu-cloud
+if [ $distro = "centos" ]; then
+    LXC_TEMPLATE=/usr/local/share/lxc/templates/lxc-ubuntu-cloud
+else
+    LXC_TEMPLATE=/usr/share/lxc/templates/lxc-ubuntu-cloud
+fi
 
 if [ ! -e ${LXC_TEMPLATE}.origin ];
 then
