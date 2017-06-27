@@ -192,34 +192,34 @@ else
 fi
 
 # -- lxc-start ----------------------------------------------------------------
-LXC_CONFIG=/var/lib/lxc/${container}/config
+#LXC_CONFIG=/var/lib/lxc/${container}/config
 
-case $distro in
-    "ubuntu" | "debian" )
-        /etc/init.d/apparmor reload
-        aa-status
-        ;;
-    "opensuse" )
-        sed -i -e "/lxc.network/d" $LXC_CONFIG
-cat << EOF >> $LXC_CONFIG
-lxc.network.type = veth
-lxc.network.link = $BRIDGE_NAME
-lxc.network.flags = up
-EOF
-        $reload_service apparmor
-        ;;
-    * )
-        $reload_service apparmor
-        ;;
-    "debian" )
-        echo "lxc.aa_allow_incomplete = 1"  >> /var/lib/lxc/${distro_name}/config
-        /etc/init.d/apparmor reload
-        /etc/init.d/apparmor start
-        debian_brctl
-        ;;
-esac
+#case $distro in
+#    "ubuntu" | "debian" )
+#        /etc/init.d/apparmor reload
+#        aa-status
+#        ;;
+#    "opensuse" )
+#        sed -i -e "/lxc.network/d" $LXC_CONFIG
+#cat << EOF >> $LXC_CONFIG
+#lxc.network.type = veth
+#lxc.network.link = $BRIDGE_NAME
+#lxc.network.flags = up
+#EOF
+#        $reload_service apparmor
+#        ;;
+#    * )
+#        $reload_service apparmor
+#        ;;
+#    "debian" )
+#        echo "lxc.aa_allow_incomplete = 1"  >> /var/lib/lxc/${distro_name}/config
+#        /etc/init.d/apparmor reload
+#        /etc/init.d/apparmor start
+#        debian_brctl
+#        ;;
+#esac
 
-echo "lxc.aa_allow_incomplete = 1"  >> $LXC_CONFIG
+#echo "lxc.aa_allow_incomplete = 1"  >> $LXC_CONFIG
 
 lxc-start --name ${container} --daemon
 result=$?
