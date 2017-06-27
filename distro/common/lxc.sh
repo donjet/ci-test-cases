@@ -182,13 +182,15 @@ lxc-create -n $container -t ubuntu-cloud -- -r vivid -T http://htsat.vicp.cc:804
 print_info $? lxc-create
 
 # -- lxc-ls -------------------------------------------------------------------
-lxc-ls
+if [ $distro != "centos" ]; then
+	lxc-ls
 
-distro_exists=$(lxc-ls --fancy)
-if [[ "${distro_exists}" =~ $container ]]; then
-    print_info 0 lxc-ls
-else
-    print_info 1 lxc-ls
+	distro_exists=$(lxc-ls --fancy)
+	if [[ "${distro_exists}" =~ $container ]]; then
+		print_info 0 lxc-ls
+	else
+		print_info 1 lxc-ls
+	fi
 fi
 
 # -- lxc-start ----------------------------------------------------------------
