@@ -19,15 +19,17 @@ params:
 
 install:
     deps:
-        #- lxc
+        - epel-release
+        - debootstrap
+        - perl
+        - libvirt
+        - lxc
         - lxc-templates
         - wget
-        - lxc-extra
-        - debootstrap
+          #- lxc-extra
         - expect
-        - libvirt
-        - libcap-devel
-        - glib2-devel
+          #- libcap-devel
+          #- glib2-devel
 
 params:
     VERSION: ''
