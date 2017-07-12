@@ -71,7 +71,7 @@ install_deps() {
             pkgs="apache2 mysql-server php-mysql php-common libapache2-mod-php"
         fi
         install_deps "curl ${pkgs}"
-        echo "extension=mysqli.so" >> /etc/php5/apache2/php.ini
+        echo "extension=mysqli.so" >> /etc/php/7.0/apache2/php.ini
         systemctl restart apache2
         systemctl restart mysql
         ;;
