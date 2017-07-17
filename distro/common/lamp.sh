@@ -68,7 +68,9 @@ install_deps() {
         if [ "${distro}" = "debian" ]; then
             pkgs="apache2 mysql-server php5-mysql php5-common libapache2-mod-php5"
         elif [ "${distro}" = "ubuntu" ]; then
-            pkgs="apache2 mysql-server php-mysql php-common libapache2-mod-php"
+            echo mysql-server mysql-server/root_password password lxmptest | sudo debconf-set-selections
+			 echo mysql-server mysql-server/root_password_again password lxmptest | sudo debconf-set-selections
+			pkgs="apache2 mysql-server php-mysql php-common libapache2-mod-php"
         fi
         install_deps "curl ${pkgs}"
         echo "extension=mysqli.so" >> /etc/php/7.0/apache2/php.ini
