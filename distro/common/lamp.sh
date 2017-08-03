@@ -11,30 +11,6 @@ cd -
 #RESULT_FILE="${OUTPUT}/result.txt"
 #export RESULT_FILE
 
-install_deps() {
-    pkgs="$1"
-    [ -z "${pkgs}" ] && error_msg "Usage: install_deps pkgs"
-
-        case "${distro}" in
-          debian|ubuntu)
-            # Use the default answers for all questions.
-            DEBIAN_FRONTEND=noninteractive apt-get update -q -y
-            # shellcheck disable=SC2086
-            DEBIAN_FRONTEND=noninteractive apt-get install -q -y ${pkgs}
-            ;;
-          centos)
-            # shellcheck disable=SC2086
-            yum -e 0 -y install ${pkgs}
-            ;;
-          fedora)
-            # shellcheck disable=SC2086
-            dnf -e 0 -y install ${pkgs}
-            ;;
-          *)
-            warn_msg "Unsupported distro: ${dist}! Package installation skipped."
-            ;;
-        esac
-}
 
 #usage() {
 #    echo "Usage: $0 [-s <true|false>]" 1>&2
@@ -88,6 +64,7 @@ install_deps() {
     esac
 #fi
 
+sed -i "s/Nginx/Apache/g" ./html/index.html
 cp ./html/* /var/www/html/
 
 # Test Apache.
