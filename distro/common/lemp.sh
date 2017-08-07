@@ -31,7 +31,7 @@ case "${distro}" in
         elif [ "${distro}" = "ubuntu" ]; then
             echo mysql-server mysql-server/root_password password lxmptest | sudo debconf-set-selections
 	        echo mysql-server mysql-server/root_password_again password lxmptest | sudo debconf-set-selections
-	        pkgs="nginx mysql-server php-mysql php-common libapache2-mod-php curl"
+	        pkgs="nginx mysql-server php php-mysql php-common libapache2-mod-php curl php7.0-fpm"
         fi
         install_deps "${pkgs}"
 
