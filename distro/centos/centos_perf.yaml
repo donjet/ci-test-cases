@@ -12,10 +12,15 @@ metadata:
 install:
     deps:
         # perf complains for missing stress symbols but there is no package available
-        - stress
+        #- stress
+        - wget
+          #- lxc-extra
+        - expect
 
 run:
     steps:
+        - lava-test-case linux-centos-install-epel-release --shell yum install epel-release -y
+        - lava-test-case linux-centos-install-stress --shell yum install stress -y
         - "cd ./distro/common; ./perf.sh; cd -"
 
 parse:
