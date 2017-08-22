@@ -19,21 +19,29 @@ params:
 
 install:
     deps:
-        - lxc
-        - lxc-templates
+      #- epel-release
+      #  - debootstrap
+      #  - perl
+      #  - libvirt
+      #  - lxc
+      #  - lxc-templates
         - wget
-        - lxc-extra
-        - debootstrap
+          #- lxc-extra
         - expect
-        - libvirt
-        - libcap-devel
-        - glib2-devel
+          #- libcap-devel
+          #- glib2-devel
 
 params:
     VERSION: ''
        
 run:
     steps:
+        - lava-test-case linux-centos-install-epel-release --shell yum install epel-release -y
+        - lava-test-case linux-centos-install-debootstrap --shell yum install debootstrap -y
+        - lava-test-case linux-centos-install-perl --shell yum install perl -y
+        - lava-test-case linux-centos-install-libvirt --shell yum install libvirt -y
+        - lava-test-case linux-centos-install-lxc --shell yum install lxc -y
+        - lava-test-case linux-centos-install-lxc-templates --shell yum install lxc-templates -y
         - "cd ./distro/common; ./lxc.sh; cd -"
 parse:
     pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
